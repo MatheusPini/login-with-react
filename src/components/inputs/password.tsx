@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form"
+import { Link } from "react-router-dom"
 
 interface IPasswordField {
     errorMessage?: string
@@ -11,7 +12,7 @@ export const PasswordField = ({ errorMessage }: IPasswordField) => {
             <div className="flex items-center justify-between">
                 <label htmlFor={"password"} className="block text-sm font-medium leading-6 text-gray-900">Senha</label>
                 <div className="text-sm">
-                    <a href="#" className="font-semibold text-gray-400 hover:text-gray-500">Esqueceu a sua senha?</a>
+                    <Link className="font-semibold text-gray-400 hover:text-gray-500" to="/forgot">Esqueceu a sua senha?</Link>
                 </div>
             </div>
             <div className="mt-2">
