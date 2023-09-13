@@ -1,4 +1,4 @@
-# Olá camaradas 🖖, Esse repositório consta um projeto simples desenvolvido por mim, utilizando tecnologias open source 💪😎
+# Olá camaradas 🖖, Neste repositório consta um projeto simples desenvolvido por mim, utilizando tecnologias open source 💪😎
 
 
 ## O projeto
