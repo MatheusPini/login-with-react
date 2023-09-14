@@ -36,7 +36,7 @@ export const Login = () => {
                 <ImgLogo />
             </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
                 <FormProvider {...methods}>
                     <form className="space-y-6" onSubmit={methods.handleSubmit(onSubmit)} method="POST">
                         <div>
