@@ -7,14 +7,25 @@ import { PasswordField } from "../components/inputs/password"
 import { LoginButton } from "../components/buttons/login"
 import { IconEmail } from "../assets/icons/email"
 import { IconLinkedin } from "../assets/icons/linkedin"
+import { useEffect, useState } from "react"
 
 interface IForm {
     email: string
     password: string
 }
 export const Login = () => {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setInterval(() => {
+
+            setIsLoading(false)
+        }, 1000)
+    }, []);
     const onSubmit: SubmitHandler<IForm> = async (data) => {
-        console.log(data)
+        setInterval(() => {
+            console.log(data)
+        }, 5000)
     }
 
     const schema = yup
@@ -31,37 +42,47 @@ export const Login = () => {
         resolver: yupResolver(schema),
     })
     return (
-        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <ImgLogo />
-            </div>
-
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <FormProvider {...methods}>
-                    <form className="space-y-6" onSubmit={methods.handleSubmit(onSubmit)} method="POST">
-                        <div>
-                            <EmailField errorMessage={methods.formState?.errors.email?.message} name='email' label='E-mail ou Usuário' />
-                        </div>
-
-                        <div>
-                            <PasswordField errorMessage={methods.formState?.errors.password?.message} />
-                        </div>
-
-                        <div>
-                            <LoginButton type='submit' label="Entrar" />
-                        </div>
-                    </form>
-
-                </FormProvider>
-
-                <p className="mt-10 text-center text-sm text-gray-500">
-                    a gente se conhece? Entre em contato para a gente trocar uma ideia!
-                </p>
-                <div className='flex justify-center gap-2 pt-2'>
-                    <IconEmail />
-                    <IconLinkedin />
+        <>
+            {isLoading ? (
+                <div className="flex justify-center items-center h-screen w-screen">
+                    <div className="spinner-border text-primary" role="status">
+                        <span style={{ fontSize: "15px" }}>Carregando...</span>
+                    </div>
                 </div>
-            </div>
-        </div>
+            ) : (
+                <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+                    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                        <ImgLogo />
+                    </div>
+
+                    <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+                        <FormProvider {...methods}>
+                            <form className="space-y-6" onSubmit={methods.handleSubmit(onSubmit)} method="POST">
+                                <div>
+                                    <EmailField errorMessage={methods.formState?.errors.email?.message} name='email' label='E-mail ou Usuário' />
+                                </div>
+
+                                <div>
+                                    <PasswordField errorMessage={methods.formState?.errors.password?.message} />
+                                </div>
+
+                                <div>
+                                    <LoginButton type='submit' label="Entrar" />
+                                </div>
+                            </form>
+
+                        </FormProvider>
+
+                        <p className="mt-10 text-center text-sm text-gray-500">
+                            a gente se conhece? Entre em contato para a gente trocar uma ideia!
+                        </p>
+                        <div className='flex justify-center gap-2 pt-2'>
+                            <IconEmail />
+                            <IconLinkedin />
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
